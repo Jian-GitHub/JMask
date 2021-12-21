@@ -18,18 +18,18 @@ import java.util.HashMap;
 public class DealData_Service {
 
     /**
-     * @param imgdir 上传图片的地址
+     * @param imgDir 上传图片的地址
      * @return String 返回保存图片的地址，失败返回空字符串
      */
-    public static String dealImg(String imgdir) {
-        if (imgdir == null || "".equals(imgdir)) {
+    public static String dealImg(String imgDir) {
+        if (imgDir == null || "".equals(imgDir)) {
             return "";
         }
 //        String url = "http://localhost:8081/Yi/Login/getPassword";
 
-        String imgData = Base64Util.ImageToBase64String(imgdir);
-        int pos = imgdir.lastIndexOf('.');
-        String imgType = imgdir.substring(++pos);
+        String imgData = Base64Util.ImageToBase64String(imgDir);
+        int pos = imgDir.lastIndexOf('.');
+        String imgType = imgDir.substring(++pos);
         try {
             HashMap<String, String> hashMap = new HashMap<>();
             hashMap.put("userName", Base64Util.encode(Global_Datas.userName));
