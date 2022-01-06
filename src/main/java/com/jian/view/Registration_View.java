@@ -149,27 +149,6 @@ public class Registration_View {
         primaryStage.requestFocus();
     }
 
-//    private void setComponents() {
-////      设置面板文字
-//        Label userName = new Label("用户名");
-//        Label password = new Label("密码");
-//        VBox vBox = new VBox();
-//        vBox.getChildren().addAll(userName, password);
-//        vBox.setPadding(new Insets(30, 30, 30, 100));
-//        vBox.setAlignment(Pos.CENTER_LEFT);
-//
-//        root.setCenter(vBox);
-//
-////      设置背景图片
-//        String url = "file:" + this.getClass().getResource("/").getPath() + "/images/HomepageGlass.png";
-//        BackgroundImage backgroundImage = new BackgroundImage(new Image(url),
-//                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-//                BackgroundSize.DEFAULT);
-//        Background background = new Background(backgroundImage);
-//        root.setBackground(background);
-////        root.setCenter(backgroudImage);
-//    }
-
     public void close(){
         this.primaryStage.close();
     }
