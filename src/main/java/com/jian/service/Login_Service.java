@@ -21,15 +21,15 @@ public class Login_Service {
             return false;
         }
 //        String url = "http://localhost:8081/Yi/Login/getPassword";
-        boolean result = false;
+        boolean result;
         try {
             HashMap<String, String> hashMap = new HashMap<>();
             hashMap.put("userName", Base64Util.encode(userName));
-            String s_passWord = HttpClientUtil.doPost(Global_Datas.login_url, hashMap);
-            if ("".equals(s_passWord)) {
+            String s_user = HttpClientUtil.doPost(Global_Datas.login_url, hashMap);
+            if ("".equals(s_user) || s_user == null) {
                 return false;
             }
-            User user = JsonUtils.jsonToList("[" + Base64Util.decode(s_passWord) + "]", User.class).get(0);
+            User user = JsonUtils.jsonToList("[" + Base64Util.decode(s_user) + "]", User.class).get(0);
             if (user == null) {
                 return false;
             }

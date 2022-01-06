@@ -6,20 +6,61 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.ssl.SSLContextBuilder;
+import org.apache.http.ssl.TrustStrategy;
 import org.apache.http.util.EntityUtils;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
 import java.io.IOException;
 import java.net.URI;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class HttpClientUtil {
+
+    /**
+     * 创建HttpClient对象, 信任所有证书
+     */
+    private static CloseableHttpClient createSSLClientDefault() {
+        try {
+            //使用 loadTrustMaterial() 方法实现一个信任策略，信任所有证书
+            SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
+                // 信任所有
+                public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+                    return true;
+                }
+            }).build();
+            //NoopHostnameVerifier类:  作为主机名验证工具，实质上关闭了主机名验证，它接受任何
+            //有效的SSL会话并匹配到目标主机。
+            HostnameVerifier hostnameVerifier = NoopHostnameVerifier.INSTANCE;
+            SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslContext, hostnameVerifier);
+            return HttpClients.custom().setSSLSocketFactory(sslsf).build();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        }
+        return createSSLClientDefault();
+
+    }
+
+
 
     /**
      * 带参数的get请求
@@ -29,7 +70,7 @@ public class HttpClientUtil {
      */
     public static String doGet(String url, Map<String, String> param) {
         // 创建Httpclient对象
-        CloseableHttpClient httpclient = HttpClients.createDefault();
+        CloseableHttpClient httpclient = createSSLClientDefault();
 
         String resultString = "";
         CloseableHttpResponse response = null;
@@ -82,7 +123,7 @@ public class HttpClientUtil {
      */
     public static <T> String doPost(String url, Map<String, T> param) {
         // 创建Httpclient对象
-        CloseableHttpClient httpClient = HttpClients.createDefault();
+        CloseableHttpClient httpClient = createSSLClientDefault();
         CloseableHttpResponse response = null;
         String resultString = "";
         try {
@@ -130,7 +171,7 @@ public class HttpClientUtil {
      */
     public static String doPostJson(String url, String json) {
         // 创建Httpclient对象
-        CloseableHttpClient httpClient = HttpClients.createDefault();
+        CloseableHttpClient httpClient = createSSLClientDefault();
         CloseableHttpResponse response = null;
         String resultString = "";
         try {
