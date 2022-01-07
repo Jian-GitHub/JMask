@@ -1,12 +1,8 @@
 package com.jian.service;
 
-import com.jian.entity.User;
 import com.jian.globalDatas.Global_Datas;
 import com.jian.utils.*;
-
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -19,13 +15,12 @@ public class DealData_Service {
 
     /**
      * @param imgDir 上传图片的地址
-     * @return String 返回保存图片的地址，失败返回空字符串
+     * @return String 返回保存图片的地址，失败返回空字符串 -> ""
      */
     public static String dealImg(String imgDir) {
         if (imgDir == null || "".equals(imgDir)) {
             return "";
         }
-//        String url = "http://localhost:8081/Yi/Login/getPassword";
 
         String imgData = Base64Util.ImageToBase64String(imgDir);
         int pos = imgDir.lastIndexOf('.');
@@ -35,17 +30,21 @@ public class DealData_Service {
             hashMap.put("userName", Base64Util.encode(Global_Datas.userName));
             hashMap.put("imgType", imgType);
             hashMap.put("imgData", Base64Util.encode(imgData));
+            //向服务器传送用户名，图片类型，图片数据，接收处理后的图片数据Base64编码
             String result_imgData = HttpClientUtil.doPost(Global_Datas.dealImg_url, hashMap);
-            if ("".equals(result_imgData)) {
+
+            if ("".equals(result_imgData) || result_imgData == null) {
                 return "";
             }
 
+            //本地创建缓存目录，存储处理后的图片
             File directory = new File("");
             String saveImgDir = directory.getAbsolutePath() + "/.AppData/" + Base64Util.decode(Global_Datas.userName);
-//            String result_imgData = Base64Util.decode(r_imgData);
             File file = new File(saveImgDir);
             if (!file.exists()) {
-                file.mkdirs();
+                if(!file.mkdirs()){
+                    return "";
+                }
             }
 
             String imgName = String.valueOf(System.currentTimeMillis() / 1000);
