@@ -44,6 +44,30 @@ public class User_View_Controller {
     }
 
     @FXML
+    void RealTimeMonitoring(ActionEvent event) {
+        BorderPane root;
+        String fxml = "fxmls/RTM_View_FXML.fxml";
+        URL url = getClass().getClassLoader().getResource(fxml);
+        FXMLLoader fxmlLoader = new FXMLLoader(url);
+        try {
+//            result.getPath();
+            root = fxmlLoader.load();
+            RTM_View_Controller controller = fxmlLoader.getController();
+            root.setPrefWidth(1200);
+            root.setPrefHeight(670);
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    borderPane.setBottom(root);
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    @FXML
     void openFile(ActionEvent event) {
 
         FileChooser fileChooser = new FileChooser();

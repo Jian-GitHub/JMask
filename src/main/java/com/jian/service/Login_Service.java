@@ -29,6 +29,7 @@ public class Login_Service {
             if ("".equals(s_user) || s_user == null) {
                 return false;
             }
+//            System.out.println(s_user);
             User user = JsonUtils.jsonToList("[" + Base64Util.decode(s_user) + "]", User.class).get(0);
             if (user == null) {
                 return false;

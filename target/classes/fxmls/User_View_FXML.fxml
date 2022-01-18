@@ -36,14 +36,8 @@
          <top>
             <MenuBar prefHeight="30.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
               <menus>
-                <Menu mnemonicParsing="false" text="文件">
+                <Menu mnemonicParsing="false" text="JMask">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#openFile" text="打开">
-                           <accelerator>
-                              <KeyCodeCombination alt="UP" code="O" control="UP" meta="ANY" shift="UP" shortcut="UP" />
-                           </accelerator>
-                        </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="另存为" />
                         <MenuItem mnemonicParsing="false" onAction="#quit" text="退出">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="Q" control="UP" meta="ANY" shift="UP" shortcut="UP" />
@@ -51,9 +45,22 @@
                         </MenuItem>
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
+                  <Menu mnemonicParsing="false" text="文件">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#openFile" text="打开">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="O" control="UP" meta="ANY" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" text="另存为" />
+                     </items>
+                  </Menu>
+                <Menu mnemonicParsing="false" text="处理">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem mnemonicParsing="false" onAction="#RealTimeMonitoring" text="实时监测">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="R" control="UP" meta="ANY" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="帮助">

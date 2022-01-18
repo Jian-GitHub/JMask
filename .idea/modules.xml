@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Mask.iml" filepath="$PROJECT_DIR$/Mask.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JMask.iml" filepath="$PROJECT_DIR$/JMask.iml" />
     </modules>
   </component>
 </project>
