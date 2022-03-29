@@ -1,9 +1,11 @@
 package com.jian.service;
 
+import com.jian.entity.Result;
 import com.jian.globalDatas.Global_Datas;
 import com.jian.utils.Base64Util;
 import com.jian.utils.HmacSHA512_Util;
 import com.jian.utils.HttpClientUtil;
+import com.jian.utils.JsonUtils;
 
 import java.util.HashMap;
 
@@ -20,15 +22,19 @@ public class Registration_Service {
      */
     public static boolean registration(String userName, String password) {
 //        String url = "http://localhost:8081/Yi/Registration/registration";
-        boolean result;
+        Result result;
         try {
             HashMap<String, String> hashMap = new HashMap<>();
             hashMap.put("userName", Base64Util.encode(userName));
             String time = String.valueOf(System.currentTimeMillis() / 1000);
             hashMap.put("password", Base64Util.encode(HmacSHA512_Util.HmacSHA512(password, time)));
             hashMap.put("time", Base64Util.encode(time));
-            result = Boolean.parseBoolean(HttpClientUtil.doPost(Global_Datas.registration_url, hashMap));
-            return result;
+            result = JsonUtils.parse(HttpClientUtil.doPost(Global_Datas.registration_url, hashMap),Result.class);
+            if (result.getCode() == 20000) {
+                return true;
+            }else{
+                return false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

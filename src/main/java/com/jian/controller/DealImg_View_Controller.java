@@ -81,6 +81,7 @@ public class DealImg_View_Controller {
             return;
         }
 
+        /*
         BorderPane root;
         String fxml = "fxmls/DealImg_View_FXML.fxml";
         URL url = getClass().getClassLoader().getResource(fxml);
@@ -105,6 +106,8 @@ public class DealImg_View_Controller {
             e.printStackTrace();
             return;
         }
+        */
+        changeDealImg(result.getPath());
     }
 
     /**
@@ -137,6 +140,10 @@ public class DealImg_View_Controller {
         assert stopButton != null : "fx:id=\"stopButton\" was not injected: check your FXML file 'DealImg_View_FXML.fxml'.";
     }
 
+    /**
+     * 更换要处理的图片
+     * @param dealImagePath 要处理的图片
+     */
     public void changeDealImg(String dealImagePath) {
         this.dealImagePath = dealImagePath;
         Image image = new Image("file:" + dealImagePath);

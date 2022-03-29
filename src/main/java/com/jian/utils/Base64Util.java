@@ -29,7 +29,7 @@ public class Base64Util {
     }
 
     /**
-     *
+     * @Description: 将加密后的文本进行base64解密
      * @param text 需要解密的文本 String
      * @return 返回解密后的文本 String
      */
@@ -41,8 +41,7 @@ public class Base64Util {
 
     /**
      * @Description: 根据图片地址转换为base64编码字符串
-     * @Author:
-     * @CreateTime:
+     * @param imgFile 待处理图片的路径
      * @return String base64编码后的图片字符串
      */
     public static String ImageToBase64String(String imgFile) {

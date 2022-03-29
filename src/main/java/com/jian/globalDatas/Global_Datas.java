@@ -14,7 +14,7 @@ public class Global_Datas {
 //    private final static String server_ip = "https://localhost";//服务器IP地址
 //    private final static String python_server_ip = "https://localhost";//服务器IP地址
 
-        private final static String server_ip = "https://www.jian-internet.com";//服务器IP地址
+    private final static String server_ip = "https://www.jian-internet.com";//服务器IP地址
     private final static String python_server_ip = "http://www.jian-internet.com";//python服务器IP地址
 
     private final static String server_rootdir = "JMask";//服务器根目录
