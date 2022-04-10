@@ -2,7 +2,7 @@ package com.jian.service;
 
 import com.jian.globalDatas.Global_Datas;
 import com.jian.utils.*;
-import java.io.File;
+
 import java.util.HashMap;
 
 /**
@@ -27,11 +27,12 @@ public class DealData_Service {
         String imgType = imgDir.substring(++pos);
         try {
             HashMap<String, String> hashMap = new HashMap<>();
-            hashMap.put("userName", Base64Util.encode(Global_Datas.userName));
+//            hashMap.put("userName", Base64Util.encode(Global_Datas.userName));
+            hashMap.put("token", Global_Datas.token);
             hashMap.put("imgType", imgType);
             hashMap.put("imgData", imgData);
             //向服务器传送用户名，图片类型，图片数据，接收处理后的图片数据Base64编码
-            String result_imgData = HttpClientUtil.doPost(Global_Datas.dealImg_url, hashMap);
+            String result_imgData = HttpClientUtil.doPost(Global_Datas.DEALIMG_URL, hashMap);
             if ("".equals(result_imgData) || result_imgData == null) {
                 return "";
             }
@@ -71,7 +72,7 @@ public class DealData_Service {
             hashMap.put("userName", Base64Util.encode(Global_Datas.userName));
             hashMap.put("imgData", imgData);
             //向服务器传送用户名，图片类型，图片数据，接收处理后的图片数据Base64编码
-            String result_imgData = HttpClientUtil.doPost(Global_Datas.dealRTM_url, hashMap);
+            String result_imgData = HttpClientUtil.doPost(Global_Datas.DEALRTM_URL, hashMap);
             if ("".equals(result_imgData) || result_imgData == null) {
                 return "";
             }

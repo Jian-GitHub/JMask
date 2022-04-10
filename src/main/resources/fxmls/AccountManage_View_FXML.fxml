@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jian.controller.AccountManage_View_Controller">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1200.0" style="-fx-background-color: white;">
+         <padding>
+            <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+         </padding>
+         <top>
+            <VBox maxWidth="960.0" minWidth="813.0" prefHeight="60.0" prefWidth="813.0" BorderPane.alignment="TOP_CENTER">
+               <children>
+                  <HBox alignment="TOP_CENTER" prefHeight="59.0" prefWidth="811.0">
+                     <children>
+                        <Label contentDisplay="CENTER" maxWidth="840.0" minHeight="0.0" minWidth="840.0" prefHeight="41.0" prefWidth="840.0" text="JMask ID">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" offsetX="2.0" offsetY="2.0" radius="2.0" spread="0.25" width="5.0">
+                                 <color>
+                                    <Color red="0.5723684430122375" green="0.5723684430122375" blue="0.5723684430122375" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Line endX="960.0" stroke="#888888" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="1.5" />
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <HBox maxWidth="840.0" minWidth="840.0" prefHeight="100.0" prefWidth="840.0" spacing="50.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox maxWidth="420.0" minWidth="245.0" prefHeight="570.0" prefWidth="245.0" spacing="2.0">
+                     <children>
+                        <HBox prefHeight="96.0" prefWidth="400.0">
+                           <children>
+                              <ImageView fx:id="userAvatar" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#updateUserAvatar" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/user_avatar.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Label fx:id="userNameLabel" prefHeight="26.0" prefWidth="270.0" text="userName" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="userIdLabel" prefHeight="15.0" prefWidth="274.0" text="1f0af08b05e04220acba0abc7d2a2872" textFill="#7a7a7a">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <AnchorPane prefHeight="570.0" prefWidth="569.0">
+                     <children>
+                        <Label layoutY="20.0" text="登录和安全">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="updateUserNameButton" layoutY="117.0" mnemonicParsing="false" onMouseClicked="#openUpdateUserName" prefHeight="120.0" prefWidth="256.0" style="-fx-background-color: white; -fx-border-color: rgb(253,253,253); -fx-border-radius: 100; -fx-cursor: pointer;" text="账户" wrapText="true">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Button>
+                        <Button fx:id="updatePassWordButton" layoutX="303.0" layoutY="117.0" mnemonicParsing="false" onMouseClicked="#openUpdatePassWord" prefHeight="120.0" prefWidth="256.0" style="-fx-background-color: white; -fx-border-color: rgb(253,253,253); -fx-border-radius: 100; -fx-cursor: pointer;" text="密码" wrapText="true">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Button>
+                        <Button fx:id="removeAccountButton" layoutX="2.0" layoutY="278.0" mnemonicParsing="false" onMouseClicked="#openRemoveAccount" prefHeight="120.0" prefWidth="256.0" style="-fx-background-color: white; -fx-border-color: rgb(253,253,253); -fx-border-radius: 100; -fx-cursor: pointer;" text="注销" wrapText="true">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Button>
+                        <Label fx:id="updateUserNameTipLabel" layoutX="71.0" layoutY="193.0" text="用于更新您的用户名" textFill="#7e7e7e" />
+                        <Label fx:id="updatePassWordTipLabel" layoutX="379.0" layoutY="193.0" text="用于更新您的密码" textFill="#7e7e7e" />
+                        <Label fx:id="removeAccountTipLabel" layoutX="65.0" layoutY="354.0" text="永久删除您的所有数据" textFill="#7e7e7e" />
+                        <Button fx:id="submitUpdateUserNameButton" layoutX="270.0" layoutY="278.0" mnemonicParsing="false" onMouseClicked="#submitUpdateUserName" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: #367FF6#367FF6;" text="更新" textFill="WHITE" visible="false">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="newUserNameField" layoutX="7.0" layoutY="162.0" onKeyPressed="#updateNewUserName" prefHeight="43.0" prefWidth="320.0" promptText="新用户名" visible="false" />
+                        <Label fx:id="errorNowPassWordLabel" layoutX="16.0" layoutY="213.0" prefHeight="17.0" prefWidth="312.0" text="密码有误" textFill="RED" visible="false" />
+                        <Label fx:id="tipTextLabel" layoutX="10.0" layoutY="116.0" text="更改用户名" visible="false">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="cancelUpdateUserNameButton" layoutX="14.0" layoutY="280.0" mnemonicParsing="false" onMouseClicked="#cancel" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: #F4F4F4;" text="取消" visible="false">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="submitUpdatePassWordButton" layoutX="266.0" layoutY="406.0" mnemonicParsing="false" onMouseClicked="#submitUpdatePassWord" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: #367FF6#367FF6;" text="更新" textFill="WHITE" visible="false">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="cancelUpdatePassWordButton" layoutX="7.0" layoutY="406.0" mnemonicParsing="false" onMouseClicked="#cancel" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: #F4F4F4;" text="取消" visible="false">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="errorNewPassWordLabel" layoutX="16.0" layoutY="287.0" prefHeight="17.0" prefWidth="312.0" text="密码需在8至15位之间" textFill="RED" visible="false" />
+                        <Label fx:id="errorConfirmPassWordLabel" layoutX="16.0" layoutY="362.0" prefHeight="17.0" prefWidth="312.0" text="两次密码不一致" textFill="RED" visible="false" />
+                        <Label fx:id="errorNewUserNameLabel" layoutX="16.0" layoutY="213.0" prefHeight="17.0" prefWidth="312.0" text="用户名需在2至15位之间" textFill="RED" visible="false" />
+                        <PasswordField fx:id="nowPassWordField" layoutX="7.0" layoutY="162.0" prefHeight="43.0" prefWidth="320.0" promptText="当前密码" visible="false" />
+                        <PasswordField fx:id="newPassWordField" layoutX="7.0" layoutY="238.0" prefHeight="43.0" prefWidth="320.0" promptText="新密码" visible="false" />
+                        <PasswordField fx:id="confirmPassWordField" layoutX="7.0" layoutY="314.0" prefHeight="43.0" prefWidth="320.0" promptText="确认密码" visible="false" />
+                        <TextField fx:id="userNameField" layoutX="7.0" layoutY="162.0" onKeyPressed="#updateNewUserName" prefHeight="43.0" prefWidth="320.0" promptText="用户名" visible="false" />
+                        <PasswordField fx:id="passWordField" layoutX="7.0" layoutY="238.0" prefHeight="43.0" prefWidth="320.0" promptText="密码" visible="false" />
+                        <Label fx:id="errorUserNameLabel" layoutX="16.0" layoutY="213.0" prefHeight="17.0" prefWidth="312.0" text="密码或用户名有误" textFill="RED" visible="false" />
+                        <Label fx:id="errorPassWordLabel" layoutX="16.0" layoutY="287.0" prefHeight="17.0" prefWidth="312.0" text="密码或用户名有误" textFill="RED" visible="false" />
+                        <Button fx:id="submitRemoveAccountButton" layoutX="276.0" layoutY="335.0" mnemonicParsing="false" onMouseClicked="#submitRemoveAccount" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: #367FF6#367FF6;" text="提交" textFill="WHITE" visible="false">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="cancelRemoveAccountButton" layoutX="17.0" layoutY="335.0" mnemonicParsing="false" onMouseClicked="#cancel" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: #F4F4F4;" text="取消" visible="false">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

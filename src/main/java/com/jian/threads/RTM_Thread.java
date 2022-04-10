@@ -1,14 +1,11 @@
 package com.jian.threads;
 
 import com.jian.globalDatas.Global_Datas;
-import com.jian.service.DealData_Service;
 import com.jian.utils.HttpClientUtil;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lombok.SneakyThrows;
-import org.apache.shiro.codec.Base64;
-import org.bytedeco.javacv.FrameGrabber;
 import org.bytedeco.javacv.Java2DFrameConverter;
 import org.bytedeco.javacv.OpenCVFrameGrabber;
 
@@ -16,8 +13,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
+import java.util.Base64;
 import java.util.HashMap;
 
 public class RTM_Thread extends Thread {
@@ -52,7 +49,7 @@ public class RTM_Thread extends Thread {
             //输出流
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             ImageIO.write(bi, "png", stream);
-            imgData = new String(Base64.encode(stream.toByteArray()), "utf-8");
+            imgData = new String(Base64.getEncoder().encode(stream.toByteArray()), "utf-8");
 //            System.out.println(imgData);
             stream.flush();
             stream.close();
@@ -62,7 +59,7 @@ public class RTM_Thread extends Thread {
             //      将图片Base64数据传至Python内处理，接收处理后的数据。
             hashMap.put("imgData", imgData);
             //向Python服务器传送用户名，图片类型，图片数据，接收处理后的图片数据Base64编码
-            resultImageBase64 = HttpClientUtil.doPost(Global_Datas.dealPythonRTM_url, hashMap);
+            resultImageBase64 = HttpClientUtil.doPost(Global_Datas.DEAL_PYTHON_RTM_URL, hashMap);
             if ("".equals(resultImageBase64) || resultImageBase64 == null) {
                 continue;
             }

@@ -21,7 +21,7 @@
                   <Font size="27.0" />
                </font>
             </Label>
-            <ImageView fx:id="userAvatar" fitHeight="58.0" fitWidth="62.0" layoutX="1035.0" layoutY="22.0" onMouseClicked="#clickUserAvatar" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="userAvatar" fitHeight="60.0" fitWidth="60.0" layoutX="1035.0" layoutY="22.0" onMouseClicked="#clickUserAvatar" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/user_avatar.png" />
                </image>
@@ -38,6 +38,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="JMask">
                   <items>
+                    <MenuItem mnemonicParsing="false" onAction="#clickJMaskWebsite" text="JMask主页" />
                         <MenuItem mnemonicParsing="false" onAction="#quit" text="退出">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="Q" control="UP" meta="ANY" shift="UP" shortcut="UP" />
@@ -52,7 +53,7 @@
                               <KeyCodeCombination alt="UP" code="O" control="UP" meta="ANY" shift="UP" shortcut="UP" />
                            </accelerator>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="另存为" />
+                        <MenuItem mnemonicParsing="false" text="另存为" visible="false" />
                      </items>
                   </Menu>
                 <Menu mnemonicParsing="false" text="处理">
@@ -63,11 +64,10 @@
                            </accelerator></MenuItem>
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="帮助">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
+                <Menu fx:id="userMenu" mnemonicParsing="false" text="用户">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#clickAccountManage" text="账户管理" />
+                     </items></Menu>
               </menus>
             </MenuBar>
          </top>

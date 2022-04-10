@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="JMask" target="1.8" />
+      <module name="JMask" target="13" />
     </bytecodeTargetLevel>
   </component>
 </project>

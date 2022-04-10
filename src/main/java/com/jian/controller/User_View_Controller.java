@@ -1,22 +1,30 @@
 package com.jian.controller;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import com.jian.globalDatas.Global_Datas;
+import com.jian.service.User_Service;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.jetbrains.annotations.NotNull;
 
 public class User_View_Controller {
 
@@ -39,7 +47,59 @@ public class User_View_Controller {
     private BorderPane borderPane;
 
     @FXML
+    private Menu userMenu;
+
+    @FXML
     void clickUserAvatar(MouseEvent event) {
+        System.out.println("ClickAvatar");
+    }
+
+    @FXML
+    void clickAccountManage(ActionEvent event) {
+//        try {
+//            Desktop.getDesktop().browse(new URI("https://JMask.Jian-Internet.com/JMask/Account/Manage"));
+//        } catch (IOException | URISyntaxException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("click");
+        Pane root;
+        String fxml = "fxmls/AccountManage_View_FXML.fxml";
+        URL url = getClass().getClassLoader().getResource(fxml);
+        FXMLLoader fxmlLoader = new FXMLLoader(url);
+        try {
+//            result.getPath();
+            root = fxmlLoader.load();
+            AccountManage_View_Controller controller = fxmlLoader.getController();
+            root.setPrefWidth(1200);
+            root.setPrefHeight(670);
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    borderPane.setBottom(root);
+                }
+            });
+            controller.setUserName(Global_Datas.userName);
+            controller.setUserID(Global_Datas.id);
+            if (Global_Datas.avatarURL == null || "".equals(Global_Datas.avatarURL)) {
+               return;
+            }else {
+                controller.setAvatar(getAvatar(Global_Datas.avatarURL));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    @FXML
+    void clickJMaskWebsite(ActionEvent event) {
+        try {
+            Desktop.getDesktop().browse(new URI("https://JMask.Jian-Internet.com"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -124,7 +184,39 @@ public class User_View_Controller {
         assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'User_View_FXML.fxml'.";
         assert userAvatar != null : "fx:id=\"userAvatar\" was not injected: check your FXML file 'User_View_FXML.fxml'.";
         assert borderPane != null : "fx:id=\"borderPane\" was not injected: check your FXML file 'User_View_FXML.fxml'.";
+        assert userMenu != null : "fx:id=\"userMenu\" was not injected: check your FXML file 'User_View_FXML.fxml'.";
 
+        Global_Datas.user_view_controller = this;
         userName.setText(Global_Datas.userName);
+        userMenu.setText(Global_Datas.userName);
+
+        Map<String, String> userInfoMap = User_Service.getUserInfo();
+        if (userInfoMap != null) {
+            Global_Datas.avatarURL = userInfoMap.get("avatarURL");
+//            System.out.println("avatarURL: " + Global_Datas.avatarURL);
+            Global_Datas.id = userInfoMap.get("id");
+            if (Global_Datas.avatarURL == null || "".equals(Global_Datas.avatarURL)) {
+                return;
+            }else {
+                changeAvatar(getAvatar(Global_Datas.avatarURL));
+            }
+        }
+    }
+
+    @NotNull
+    private Image getAvatar(String avatarURL) {
+        return new Image(avatarURL);
+    }
+
+    public void updateUserName() {
+        userName.setText(Global_Datas.userName);
+        userMenu.setText(Global_Datas.userName);
+    }
+
+    public void changeAvatar(Image image) {
+        userAvatar.setImage(image);
+        userAvatar.setFitHeight(60);
+        userAvatar.setFitWidth(60);
+        userAvatar.setPreserveRatio(false);
     }
 }

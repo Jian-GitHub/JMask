@@ -1,5 +1,6 @@
 package com.jian.view;
 
+import com.jian.globalDatas.Global_Datas;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -35,7 +36,9 @@ public class User_View {
     private double xOffset = 0;
     private double yOffset = 0;
 
-    public User_View(){}
+    public User_View(){
+        Global_Datas.user_view = this;
+    }
 
     public void start() {
         primaryStage = new Stage();

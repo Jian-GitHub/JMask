@@ -8,6 +8,7 @@ import com.jian.utils.HttpClientUtil;
 import com.jian.utils.JsonUtils;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * @author qi
@@ -29,8 +30,8 @@ public class Registration_Service {
             String time = String.valueOf(System.currentTimeMillis() / 1000);
             hashMap.put("password", Base64Util.encode(HmacSHA512_Util.HmacSHA512(password, time)));
             hashMap.put("time", Base64Util.encode(time));
-            result = JsonUtils.parse(HttpClientUtil.doPost(Global_Datas.registration_url, hashMap),Result.class);
-            if (result.getCode() == 20000) {
+            result = JsonUtils.parse(HttpClientUtil.doPost(Global_Datas.REGISTRATION_URL, hashMap),Result.class);
+            if (Objects.equals(result.getCode(), Global_Datas.SUCCESS)) {
                 return true;
             }else{
                 return false;
@@ -51,7 +52,7 @@ public class Registration_Service {
         try {
             HashMap<String, String> hashMap = new HashMap<>();
             hashMap.put("userName", Base64Util.encode(userName));
-            result = Boolean.parseBoolean(HttpClientUtil.doPost(Global_Datas.canUseUserName_url, hashMap));
+            result = Boolean.parseBoolean(HttpClientUtil.doPost(Global_Datas.CAN_USE_USERNAME_URL, hashMap));
             return result;
         } catch (Exception e) {
             e.printStackTrace();

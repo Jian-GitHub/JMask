@@ -1,5 +1,7 @@
 package com.jian.service;
 
+import com.alibaba.fastjson.JSON;
+import com.jian.entity.Result;
 import com.jian.entity.User;
 import com.jian.globalDatas.Global_Datas;
 import com.jian.utils.Base64Util;
@@ -10,6 +12,8 @@ import com.jian.utils.JsonUtils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author qi
@@ -25,7 +29,7 @@ public class Login_Service {
         try {
             HashMap<String, String> hashMap = new HashMap<>();
             hashMap.put("userName", Base64Util.encode(userName));
-            String s_user = HttpClientUtil.doPost(Global_Datas.login_url, hashMap);
+            String s_user = HttpClientUtil.doPost(Global_Datas.LOGIN_URL, hashMap);
             if ("".equals(s_user) || s_user == null) {
                 return false;
             }
@@ -41,7 +45,21 @@ public class Login_Service {
             String createTime = String.valueOf(date.getTime() / 1000); // 时间戳转换日期
             result = Base64Util.decode(user.getPassword()).equals(HmacSHA512_Util.HmacSHA512(passWord, createTime));
             if (result) {
+//                System.out.println("OK");
                 Global_Datas.userName = userName;
+                hashMap.clear();
+                hashMap.put("username", userName);
+                hashMap.put("password", passWord);
+                String resultStr = HttpClientUtil.doPost(Global_Datas.LOGIN_TOKEN_URL, hashMap);
+                Result tokenResult = JsonUtils.parse(resultStr, Result.class);
+                if (Objects.equals(tokenResult.getCode(), Global_Datas.SUCCESS)){
+//                    String[] resultStrs = resultStr.split(":");
+//                    String token = resultStrs[resultStrs.length-1].replace(":","").replace("}","").replace("\"", "");
+                    Map<String, String> resultMap = (Map<String, String>) tokenResult.getData();
+                    Global_Datas.token = resultMap.get("token");
+//                    Global_Datas.token = token;
+//                    Global_Datas.id = resultMap.get("id");
+                }
             }
             return result;
         } catch (Exception e) {

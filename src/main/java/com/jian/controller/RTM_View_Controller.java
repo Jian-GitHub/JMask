@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 public class RTM_View_Controller {
@@ -38,14 +39,18 @@ public class RTM_View_Controller {
 
     @FXML
     void clickStart(MouseEvent event) {
-        rtm_Thread = new RTM_Thread(resultImgView);
-        rtm_Thread.start();
+        if (event.getButton() == MouseButton.PRIMARY) {
+            rtm_Thread = new RTM_Thread(resultImgView);
+            rtm_Thread.start();
+        }
     }
 
     @FXML
     void clickStop(MouseEvent event) {
-        if (rtm_Thread != null && rtm_Thread.isAlive()) {
-            rtm_Thread.stopRTM();
+        if (event.getButton() == MouseButton.PRIMARY) {
+            if (rtm_Thread != null && rtm_Thread.isAlive()) {
+                rtm_Thread.stopRTM();
+            }
         }
     }
 
