@@ -1,0 +1,15 @@
+
+C
+java:S1604{"(Make this anonymous inner class a lambda(ÖĞÑøÿÿÿÿ
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(’İøëüÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(§³‹Õûÿÿÿÿ
+V	java:S125""<This block of commented-out lines of code should be removed.(Íê„¨ÿÿÿÿÿ
+Q	java:S125U"<This block of commented-out lines of code should be removed.(¥êüû
+C
+java:S1602…",Remove useless curly braces around statement(ÃÉş©
+W	java:S125±"<This block of commented-out lines of code should be removed.(¬¹Üÿÿÿÿÿ
+?	java:S108Ò")Either remove or fill this block of code.(”ı¾
+D
+java:S1128")Remove this unused import 'java.net.URL'.(ñìÁ„üÿÿÿÿ
+N
+java:S1128"3Remove this unused import 'javafx.fxml.FXMLLoader'.(À‡ô³úÿÿÿÿ

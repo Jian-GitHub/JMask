@@ -26,7 +26,6 @@ public class Login_View extends Application {
 
     private Stage primaryStage;
     private BorderPane root;
-    private Scene scene;
 
     //窗体拉伸属性
 //    private static boolean isRight;// 是否处于右边界调整窗口状态
@@ -44,24 +43,23 @@ public class Login_View extends Application {
         // 获得屏幕大小
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         // 设置窗口位置居中以及窗口大小
-        double view_x = (screenSize.width - 500) / 2;
-        double view_y = (screenSize.height - 350) / 2;
+        double viewX = (screenSize.width - 500.0) / 2;
+        double viewY = (screenSize.height - 350.0) / 2;
 
         String fxml = "fxmls/Login_View_FXML.fxml";
         URL url = getClass().getClassLoader().getResource(fxml);
-//        System.out.println(fxml);
         if(url == null){
             System.exit(0);
         }
         FXMLLoader fxmlLoader = new FXMLLoader(url);
         Parent root = fxmlLoader.load();
         ((Login_View_Controller) fxmlLoader.getController()).setStage(primaryStage);
-        primaryStage.setX(view_x);
-        primaryStage.setY(view_y);
+        primaryStage.setX(viewX);
+        primaryStage.setY(viewY);
 //        primaryStage.setOpacity(0.8);
 //        primaryStage.setTitle("登录");
 
-        scene = new Scene(root, 500, 350);
+        Scene scene = new Scene(root, 500, 350);
 //        BorderPane backgroudPane = new BorderPane();
 //        Scene backgroud = new Scene(backgroudPane,500,350);
 

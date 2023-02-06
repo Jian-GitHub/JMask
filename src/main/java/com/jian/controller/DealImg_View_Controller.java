@@ -49,7 +49,7 @@ public class DealImg_View_Controller {
     private Label progressLabel;
 
     @FXML
-    private ProgressIndicator dealProgressdealProgress;
+    private ProgressIndicator dealProgressDealProgress;
 
     @FXML
     private Button startButton;
@@ -120,13 +120,38 @@ public class DealImg_View_Controller {
         if (this.dealImagePath == null) {
             return;
         }
-        String resultImageBase64 = DealData_Service.dealImgByDir(dealImagePath);//接收处理后的图片数据Base64编码
-        changeResultImg(resultImageBase64);
+        Thread dealImgThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    startButton.setDisable(true);
+                    stopButton.setDisable(false);
+                    dealProgressDealProgress.setVisible(true);
+                    progressLabel.setText("正在上传处理");
+                });
+                String resultImageBase64 = DealData_Service.dealImgByDir(dealImagePath);//接收处理后的图片数据Base64编码
+                Platform.runLater(() -> {
+                    progressLabel.setText("正在解析结果");
+                });
+                changeResultImg(resultImageBase64);
+                Platform.runLater(() -> {
+                    dealProgressDealProgress.setVisible(false);
+                    progressLabel.setText("已完成");
+                    startButton.setDisable(false);
+                    stopButton.setDisable(true);
+                });
+            }
+        });
+        dealImgThread.start();
+        if (dealImgThread.isAlive()){
+            dealImgThread.interrupt();
+        }
     }
 
     @FXML
     void clickStop(MouseEvent event) {
-
+        startButton.setDisable(false);
+        stopButton.setDisable(true);
     }
 
     @FXML
@@ -134,7 +159,7 @@ public class DealImg_View_Controller {
         assert borderPane != null : "fx:id=\"borderPane\" was not injected: check your FXML file 'DealImg_View_FXML.fxml'.";
         assert dealImgView != null : "fx:id=\"dealImgView\" was not injected: check your FXML file 'DealImg_View_FXML.fxml'.";
         assert resultImgView != null : "fx:id=\"resultImgView\" was not injected: check your FXML file 'DealImg_View_FXML.fxml'.";
-        assert dealProgressdealProgress != null : "fx:id=\"dealProgressdealProgress\" was not injected: check your FXML file 'DealImg_View_FXML.fxml'.";
+        assert dealProgressDealProgress != null : "fx:id=\"dealProgressdealProgress\" was not injected: check your FXML file 'DealImg_View_FXML.fxml'.";
         assert progressLabel != null : "fx:id=\"progressLabel\" was not injected: check your FXML file 'DealImg_View_FXML.fxml'.";
         assert startButton != null : "fx:id=\"startButton\" was not injected: check your FXML file 'DealImg_View_FXML.fxml'.";
         assert stopButton != null : "fx:id=\"stopButton\" was not injected: check your FXML file 'DealImg_View_FXML.fxml'.";

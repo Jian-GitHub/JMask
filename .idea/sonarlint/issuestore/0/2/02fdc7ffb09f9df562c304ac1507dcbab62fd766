@@ -1,0 +1,40 @@
+
+C
+java:S1604K"(Make this anonymous inner class a lambda(ôâŠûıÿÿÿÿ
+C
+java:S1604v"(Make this anonymous inner class a lambda(ôâŠûıÿÿÿÿ
+D
+java:S1604¤"(Make this anonymous inner class a lambda(ôâŠûıÿÿÿÿ
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(óÌø×ÿÿÿÿÿ
+S	java:S1066"9Replace this use of System.out or System.err by a logger.(÷à¸„ûÿÿÿÿ
+1
+java:S3626T"Remove this redundant jump.(ûÁİ…
+1
+java:S3626Z"Remove this redundant jump.(ûÁİ…
+V	java:S125;"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ
+V	java:S125F"<This block of commented-out lines of code should be removed.(‹ü‡üÿÿÿÿ
+Z
+java:S2147d"DCombine this catch with the one at line 98, which has the same body.(óûìœ
+W
+java:S1075a"ARefactor your code to get this URI from a customizable parameter.(ö’˜Æ
+h	java:S100k"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û‹Ñ°ıÿÿÿÿ
+T
+java:S1854s">Remove this useless assignment to local variable "controller".(œ“óş
+1
+java:S3626~"Remove this redundant jump.(ûÁİ…
+V	java:S125q"<This block of commented-out lines of code should be removed.(‹ü‡üÿÿÿÿ
+E
+java:S1481s"/Remove this unused "controller" local variable.(œ“óş
+2
+java:S3626¬"Remove this redundant jump.(ûÁİ…
+W	java:S125›"<This block of commented-out lines of code should be removed.(‹ü‡üÿÿÿÿ
+R	java:S125Ÿ"<This block of commented-out lines of code should be removed.(‘åàÎ
+2
+java:S3626Ç"Remove this redundant jump.(ûÁİ…
+Y
+java:S2696½"6Make the enclosing method "static" or remove this set.(Ğµşÿÿÿÿ8Š½Öö†0
+T
+java:S2696Ã"6Make the enclosing method "static" or remove this set.(‹ŸóÚ8½Öö†0
+T
+java:S2696Å"6Make the enclosing method "static" or remove this set.(êÄÜ¤8½Öö†0
+R	java:S125Ä"<This block of commented-out lines of code should be removed.(Ğ±ÂÄ

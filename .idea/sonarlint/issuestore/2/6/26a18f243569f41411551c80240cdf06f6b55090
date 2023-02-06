@@ -1,0 +1,24 @@
+
+b	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(£øï
+}
+java:S1450"[Remove the "primaryStage" field and declare it as a local variable in the relevant methods.(ˆ©äÔüÿÿÿÿ8°†ÆÍ†0
+Z
+java:S11177"8Rename "root" which hides the field declared at line 28.(Ê€Ûìüÿÿÿÿ8áäÈÍ†0
+V	java:S125;"<This block of commented-out lines of code should be removed.(î§ùÙøÿÿÿÿ
+Q	java:S125?"<This block of commented-out lines of code should be removed.(ıÏÔ
+Q	java:S125B"<This block of commented-out lines of code should be removed.(ùŸ‚
+Q	java:S125E"<This block of commented-out lines of code should be removed.(ï»äœ
+A
+java:S1481b"&Remove this unused "x" local variable.(¥´¢âüÿÿÿÿ
+A
+java:S1481c"&Remove this unused "y" local variable.(ªªõ±ùÿÿÿÿ
+P	java:S125g"<This block of commented-out lines of code should be removed.(ûê(
+Q	java:S125j"<This block of commented-out lines of code should be removed.(Ş¤Ü
+Q	java:S125y"<This block of commented-out lines of code should be removed.(ÇÂƒÎ
+V	java:S125"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ
+R	java:S125‡"<This block of commented-out lines of code should be removed.(—ì×¥
+W	java:S125ª"<This block of commented-out lines of code should be removed.(øÛ—Ûÿÿÿÿÿ
+R
+java:S1068"0Remove this unused "primaryStage" private field.(ˆ©äÔüÿÿÿÿ8Ñ†ÆÍ†0
+N
+java:S1144˜"2Remove this unused private "setComponents" method.(ÜğÜ±ıÿÿÿÿ

@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Jian Qi
@@ -16,6 +18,112 @@ import java.io.IOException;
  */
 public class Mytest {
     public static void main(String[] args) throws InterruptedException, IOException {
+/*
+一个轮班可能需要多名同学参加
+一名同学可能会参加多次轮班
+一位同学的多次轮班之间不能有时间间隔，也不能有重叠
+
+1 1 1 5
+1 3 2 6 8
+2 3 3 5 7
+3 3 4 9
+4 4 4
+4 6 10
+4 7 9
+5 6 11
+6 6 12
+ */
+        int n = 9;
+
+        List<Integer>[] input = new List[n];
+        input[0] = new ArrayList<Integer>();
+        input[0].add(1);
+        input[0].add(1);
+        input[0].add(1);
+        input[0].add(5);
+        input[1] = new ArrayList<Integer>();
+        input[1].add(1);
+        input[1].add(3);
+        input[1].add(2);
+        input[1].add(6);
+        input[1].add(8);
+        input[2] = new ArrayList<Integer>();//2 3 3 5 7
+        input[2].add(2);
+        input[2].add(3);
+        input[2].add(3);
+        input[2].add(5);
+        input[2].add(7);
+        input[3] = new ArrayList<Integer>();//3 3 4 9
+        input[3].add(3);
+        input[3].add(3);
+        input[3].add(4);
+        input[3].add(9);
+        input[4] = new ArrayList<Integer>();//4 4 4
+        input[4].add(4);
+        input[4].add(4);
+        input[4].add(4);
+        input[5] = new ArrayList<Integer>();//4 6 10
+        input[5].add(4);
+        input[5].add(6);
+        input[5].add(10);
+        input[6] = new ArrayList<Integer>();//4 7 9
+        input[6].add(4);
+        input[6].add(7);
+        input[6].add(9);
+        input[7] = new ArrayList<Integer>();//5 6 11
+        input[7].add(5);
+        input[7].add(6);
+        input[7].add(11);
+        input[8] = new ArrayList<Integer>();//6 6 12
+        input[8].add(6);
+        input[8].add(6);
+        input[8].add(12);
+        int num = 0;
+        int min = 0;
+        int value = 4;
+//        boolean first = false, second = false, third = false, fourh = false;
+        boolean[] weeks = {false,false,false};
+        boolean result = true;
+        List<Integer> rlt = new ArrayList<>();
+        // 1 ~ 4
+        for (int i = 0 ; i < n ; i ++) {
+            for(int j = 0 ; j < n ; j++){
+                int start = input[i].get(0);
+                int end = input[i].get(1);
+                int mid = end - start + 1;
+                value -= mid;
+                for(int ii = start-1 ; ii < mid ; ii++){
+                    weeks[ii] = true;
+                }
+                for (boolean week : weeks) {
+                    if (week) {
+                        continue;
+                    } else {
+                        result = week;
+                    }
+                }
+                if (result) {
+                    break;
+                }
+                rlt.add(i);
+//                switch (start) {
+//                    case 1: first = true;break;
+//                    case 2: second = true;break;
+//                    case 3: third = true;break;
+//                    case 4: fourh = true;break;
+//                }
+//                switch (end) {
+//                    case 1: first = true;break;
+//                    case 2: second = true;break;
+//                    case 3: third = true;break;
+//                    case 4: fourh = true;break;
+//                }
+            }
+            if (result) {
+                break;
+            }
+        }
+
 //        RTM_Thread r = new RTM_Thread();
 
 //        OpenCVFrameGrabber grabber = new OpenCVFrameGrabber(0);//0表示本机摄像头 当然这里也可以换成网络摄像头地址
